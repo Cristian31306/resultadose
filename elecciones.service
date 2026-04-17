@@ -3,13 +3,13 @@ Description=Gunicorn instance to serve Elecciones Dashboard
 After=network.target
 
 [Service]
-# REEMPLAZA 'ubuntu' por tu nombre de usuario del VPS
-User=ubuntu
+# Nombre de usuario del VPS
+User=cristian
 Group=www-data
-# REEMPLAZA '/home/ubuntu/Elecciones' por la ruta real en tu VPS
-WorkingDirectory=/home/ubuntu/Elecciones
-Environment="PATH=/home/ubuntu/Elecciones/venv/bin"
-ExecStart=/home/ubuntu/Elecciones/venv/bin/gunicorn --workers 3 --bind unix:elecciones.sock -m 007 server:app
+# Ruta real en tu VPS
+WorkingDirectory=/home/cristian/apps/eleccionese
+Environment="PATH=/home/cristian/apps/eleccionese/venv/bin"
+ExecStart=/home/cristian/apps/eleccionese/venv/bin/gunicorn --workers 3 --bind unix:elecciones.sock -m 007 server:app
 
 [Install]
 WantedBy=multi-user.target
