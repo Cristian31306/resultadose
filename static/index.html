@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Norte de Santander</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.ico?v=1.2.0">
+    <link rel="stylesheet" href="style.css?v=1.2.0">
+    <!-- SheetJS para Exportación a Excel -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <main>
+            <section class="filters-card">
+                <h1>Resultados Elecciones Legislativas <span class="highlight">2026</span></h1>
+                <div class="filter-group">
+                    <label for="corpSelect">Corporacion</label>
+                    <select id="corpSelect">
+                        <option value="">Seleccione Corporacion...</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="munSelect">Municipio</label>
+                    <select id="munSelect">
+                        <option value="">Seleccione Municipio...</option>
+                    </select>
+                </div>
+
+                <div class="filter-group search-group">
+                    <label for="candidateInput">Candidato</label>
+                    <div class="search-container">
+                        <input type="text" id="candidateInput" autocomplete="off" placeholder="Escriba para buscar...">
+                        <div id="candidateDropdown" class="custom-dropdown hidden"></div>
+                    </div>
+                </div>
+
+                <div class="filter-group action-group">
+                    <button id="searchBtn" class="btn-primary">Ver Resultados</button>
+                </div>
+            </section>
+
+            <section id="resultsSection" class="results-card hidden">
+                <div class="results-header">
+                    <h2 id="selectedCandidateName">Candidato</h2>
+                    <div class="results-actions">
+                        <button id="exportBtn" class="btn-export">
+                             Exportar a Excel
+                        </button>
+                        <div class="total-badge">Total Votos: <span id="totalVotes">0</span></div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="resultsTable">
+                        <thead id="resultsHeader">
+                        </thead>
+                        <tbody id="resultsBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div id="loadingOverlay" class="loading-overlay hidden">
+                <div class="spinner"></div>
+                <p>Cargando datos...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Tablero Electoral • Algorah</p>
+        </footer>
+    </div>
+
+    <script src="app.js?v=1.2.0"></script>
+</body>
+
+</html>

@@ -1,0 +1,470 @@
+:root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --secondary: #64748b;
+    --bg-app: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --accent: #f59e0b;
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem; /* Un poco más de aire lateral */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+}
+
+h1 {
+    font-size: 1.75rem; /* Un poco más compacto */
+    font-weight: 700;
+    color: var(--text-main);
+    grid-column: 1 / -1; /* Ocupa todo el ancho en el grid */
+    margin-bottom: 0.25rem;
+}
+
+.highlight {
+    color: var(--primary);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem; /* Un poco más pequeño para ahorrar espacio */
+    font-weight: 400;
+    margin-bottom: 2rem;
+    grid-column: 1 / -1; /* Ocupa todo el ancho en el grid */
+}
+
+/* Cards */
+.filters-card, .results-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    position: relative; /* Contexto para el dropdown */
+    overflow: visible !important; /* Permitir que el dropdown sobresalga */
+}
+
+/* Filters */
+.filters-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.search-group {
+    grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+    .search-group {
+        grid-column: span 2;
+    }
+}
+
+label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+select, input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-main);
+    background-color: #fbfcfd;
+    transition: all 0.2s ease;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* Search Dropdown */
+.search-input-wrapper {
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 4px;
+    display: none;
+}
+
+.dropdown-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f8fafc;
+    color: var(--primary);
+}
+
+/* Results Section */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0; /* Quitamos margen para que pegue con la tabla */
+    padding: 1rem 1.5rem;
+    background: white;
+    border-bottom: 2px solid #f1f5f9;
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Siempre encima de todo */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.results-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-export {
+    background-color: #166534; /* Verde Excel */
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-export:hover {
+    background-color: #14532d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-export:active {
+    transform: translateY(0);
+}
+
+.total-badge {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid var(--border);
+    position: relative;
+    max-height: 70vh; /* Limitar altura para que el sticky sea util */
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap; /* Evita que el texto de las mesas se rompa */
+}
+
+th {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    background: #f8fafc;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20; /* Por encima de las celdas normales */
+}
+
+/* Segunda columna fija (Puesto de Votacion) */
+th:nth-child(2), td:nth-child(2) {
+    position: sticky;
+    left: 40px; /* Al lado de la numeración */
+    z-index: 10;
+    background-color: #f8fafc;
+    text-align: left;
+    min-width: 250px;
+    border-right: 2px solid var(--border);
+}
+
+th:nth-child(2) {
+    top: 0;
+    z-index: 30; /* Esquina: encima de todo */
+}
+
+td:nth-child(2) {
+    background-color: var(--bg-card);
+    font-weight: 500;
+}
+
+/* Primera columna (Numeración #) */
+.col-index {
+    width: 40px;
+    min-width: 40px;
+    position: sticky;
+    left: 0;
+    z-index: 11; /* Encima de la otra columna fija */
+    background-color: #f1f5f9 !important;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    border-right: 1px solid var(--border);
+}
+
+th.col-index {
+    top: 0;
+    z-index: 40; /* Esquina: mayor prioridad */
+}
+
+/* Columna de Total fija a la derecha */
+th:last-child, td:last-child {
+    position: sticky;
+    right: 0;
+    z-index: 25; /* Superior a celdas normales */
+    background-color: #eef2ff;
+    color: var(--primary);
+    font-weight: 700;
+    border-left: 2px solid var(--border);
+}
+
+th:last-child {
+    top: 0;
+    z-index: 45; /* Esquina: encima de los otros headers */
+    background-color: #eef2ff;
+}
+
+td {
+    padding: 0.75rem 0.5rem;
+    border: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Button */
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+tr:hover td {
+    background-color: #fbfcfd;
+}
+
+.filter-group input {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 8px;
+    background: #F8FAFC;
+    color: var(--text-main);
+    font-size: 1rem;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.filter-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.custom-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 300px; /* Un poco más de espacio */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E2E8F0;
+    overflow-y: auto;
+    z-index: 9999; /* Z-index súper alto para que siempre esté encima */
+    margin-top: 4px;
+    padding: 4px 0;
+}
+
+.dropdown-item {
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: background 0.1s;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background: #EFF6FF;
+    color: var(--primary);
+}
+
+.dropdown-item.no-results {
+    color: var(--text-muted);
+    font-style: italic;
+    cursor: default;
+    background: transparent !important;
+}
+
+.custom-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-dropdown::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 10px;
+}
+
+/* Utils */
+.hidden {
+    display: none !important;
+}
+
+/* Loading */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--primary-light);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
