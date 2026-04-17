@@ -7,9 +7,9 @@ After=network.target
 User=cristian
 Group=www-data
 # Ruta real en tu VPS
-WorkingDirectory=/home/cristian/apps/eleccionese
-Environment="PATH=/home/cristian/apps/eleccionese/venv/bin"
-ExecStart=/home/cristian/apps/eleccionese/venv/bin/gunicorn --workers 3 --bind unix:elecciones.sock -m 007 server:app
+WorkingDirectory=/home/cristian/apps/resultadose
+Environment="PATH=/home/cristian/apps/resultadose/venv/bin"
+ExecStart=/home/cristian/apps/resultadose/venv/bin/gunicorn --workers 3 --bind unix:elecciones.sock -m 007 server:app
 
 [Install]
 WantedBy=multi-user.target
